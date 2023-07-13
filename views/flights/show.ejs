@@ -1,12 +1,46 @@
 <%- include('../partials/header') %>
 
 <section id="show-page">
-    <div>Airline: </div>
+    <div><strong>Airline: </strong></div>
     <div><%= flight.airline %></div>
-    <div>Airport: </div>
+    <div><strong>Airport: </strong></div>
     <div><%= flight.airport%></div>
-    <div>Flight No: </div>
+    <div><strong>Flight No: </strong></div>
     <div><%= flight.flightno %></div>
-    <div>Departs: </div>
+    <div><strong>Departs: </strong></div>
     <div><%= flight.departs %></div>
+</section>
+
+
+
+<section>
+    <% flight.destinations.forEach(function(flight) { %>
+        <tr>
+          <div><strong>Airport: </strong></div>
+          <td><%= flight.airport %></td>
+          <div><strong>Arrival: </strong></div>
+          <td><%= flight.arrival %></td>
+        </tr>
+      <% }); %>
+</section>
+
+<form action="/flights/<%= flight._id %>" method="POST">
+    <label>Airport: </label>
+    <input type="text" name="airport">
+    <label>Arrival:  </label>
+    <input type="date" name="arrival">
+    <input type="submit" value="Add Destination">
+</form>
+
+<a href="/flights/<%= flight._id %>/tickets/new">New Ticket</a>
+
+<section>
+    <% tickets.forEach(function(ticket) { %>
+        <tr>
+          <div><strong>Seat: </strong></div>
+          <td><%= ticket.seat %></td>
+          <div><strong>Price: </strong></div>
+          <td><%= ticket.price %></td>
+        </tr>
+      <% }); %>
 </section>
